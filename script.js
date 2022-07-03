@@ -38,11 +38,11 @@ window.onload = () =>{
     operator = this.dataset.value;
     if(num2 !== 0) num1 = num2;
     num2 = 0;
-    if(num1 !== 0) updateDisplay('display', `${num1} ${operator}`);
+    updateDisplay('display', `${num1} ${operator}`);
   }))
 
   document.querySelector('#equal').addEventListener('click', function(){
-    if(num1 !== 0 && num2 !== 0){
+    if(num2 !== 0 && operator && displayP.textContent[displayP.textContent.length-1] !== '='){
       updateDisplay('display', `${num1} ${operator} ${num2} =`);
       displayResult(operate(num1, num2, operator));
     }
@@ -56,6 +56,11 @@ window.onload = () =>{
 
   document.querySelector('#delete').addEventListener('click', function(){
     num2 = Math.floor(num2/10);
+    updateDisplay('result', num2);
+  })
+
+  document.querySelector('#sign').addEventListener('click', function(){
+    num2 = -num2;
     updateDisplay('result', num2);
   })
 }
