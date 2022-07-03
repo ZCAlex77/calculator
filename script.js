@@ -21,11 +21,9 @@ window.onload = () =>{
   }
 
   const displayResult = (result) =>{
-    if(num1 !== 0 && num2 !== 0){
-      updateDisplay('result', result);
-      num2 = result;
-      num1 = 0;
-    }
+    updateDisplay('result', result);
+    num2 = result;
+    num1 = 0;
   }
 
   document.querySelectorAll('.num').forEach(el => el.addEventListener('click', function(){
@@ -34,15 +32,30 @@ window.onload = () =>{
   }));
 
   document.querySelectorAll('.operator').forEach(el => el.addEventListener('click', function(){
-    displayResult(operate(num1, num2, operator));
+    if(num1 !== 0 && num2 !== 0){
+      displayResult(operate(num1, num2, operator));
+    }
     operator = this.dataset.value;
-    num1 = num2;
+    if(num2 !== 0) num1 = num2;
     num2 = 0;
-    updateDisplay('display', `${num1} ${operator}`);
+    if(num1 !== 0) updateDisplay('display', `${num1} ${operator}`);
   }))
 
   document.querySelector('#equal').addEventListener('click', function(){
-    if(num1 !== 0 && num2 !== 0) updateDisplay('display', `${num1} ${operator} ${num2} =`);
-    displayResult(operate(num1, num2, operator));
+    if(num1 !== 0 && num2 !== 0){
+      updateDisplay('display', `${num1} ${operator} ${num2} =`);
+      displayResult(operate(num1, num2, operator));
+    }
+  })
+
+  document.querySelector('#clear').addEventListener('click', function(){
+    [num1, num2, operator] = [0, 0, ''];
+    updateDisplay('result', 0);
+    updateDisplay('display', '');
+  })
+
+  document.querySelector('#delete').addEventListener('click', function(){
+    num2 = Math.floor(num2/10);
+    updateDisplay('result', num2);
   })
 }
