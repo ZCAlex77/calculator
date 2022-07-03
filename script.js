@@ -10,7 +10,6 @@ window.onload = () =>{
       case '-': return num1 - num2;
       case '*': return num1 * num2;
       case '/': return num1 / num2;
-      case '=': return num1;
     }
   }
 
@@ -21,20 +20,29 @@ window.onload = () =>{
     }
   }
 
+  const displayResult = (result) =>{
+    if(num1 !== 0 && num2 !== 0){
+      updateDisplay('result', result);
+      num2 = result;
+      num1 = 0;
+    }
+  }
+
   document.querySelectorAll('.num').forEach(el => el.addEventListener('click', function(){
     num2 = num2 * 10 + Number(this.dataset.value);
     updateDisplay('result', num2);
   }));
 
   document.querySelectorAll('.operator').forEach(el => el.addEventListener('click', function(){
-    if(num1 !== 0 && num2 !== 0){
-      let result = operate(num1, num2, operator);
-      updateDisplay('result', result);
-      num2 = result;
-    }
+    displayResult(operate(num1, num2, operator));
     operator = this.dataset.value;
     num1 = num2;
     num2 = 0;
     updateDisplay('display', `${num1} ${operator}`);
   }))
+
+  document.querySelector('#equal').addEventListener('click', function(){
+    if(num1 !== 0 && num2 !== 0) updateDisplay('display', `${num1} ${operator} ${num2} =`);
+    displayResult(operate(num1, num2, operator));
+  })
 }
