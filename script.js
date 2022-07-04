@@ -58,7 +58,8 @@ window.onload = () =>{
   })
 
   document.querySelector('#delete').addEventListener('click', function(){
-    num2 = num2.slice(0, num2.length-1);
+    if(num2.length === 1) num2 = '0';
+    else num2 = num2.slice(0, num2.length-1);
     updateDisplay('result', num2);
   })
 
