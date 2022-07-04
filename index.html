@@ -19,22 +19,28 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
-      background-color: #282828;
+      background: linear-gradient(45deg, #383838, #282828, #383838), #282828;
     }
     .calculator{
       width: 400px;
-      background: #777;
+      background: linear-gradient(to bottom, #999 10%, #777), #777;
+      box-shadow: 10px 10px 30px black;
       border-radius: 10px;
       height: 500px;
       padding: 1rem;
       display: grid;
       grid-template-rows: 1fr 4fr;
       gap: 1rem;
+      border: 3px solid #bbb;
     }
     .display{
       width: 100%;
       background: rgb(230, 248, 248);
       padding: .5rem 1rem;
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: .5rem;
+      border-radius: 10px 10px 0 0;
     }
     .display p{
       text-align: right;
@@ -49,6 +55,7 @@
       cursor: pointer;
       background-color: #ddd;
       font-size: 1.2rem;
+      border: 2px solid #999;
     }
     button:hover{background-color: #bbb;}
     button:active{background-color: #aaa;}
@@ -58,28 +65,28 @@
   <div class="calculator">
     <div class="display">
       <p id="display"></p>
-      <p id="result">0</p>
+      <p style="grid-row: 2" id="result">0</p>
     </div>
     <div class="buttons">
       <button id="clear">Clear</button>
-      <button id="delete" style="grid-column: 2 / span 2;">Delete</button>
-      <button class="operator" data-value="/">&divide;</button>
+      <button id="delete">Delete</button>
+      <button id="equal" data-value="=" style="grid-column: 3 / span 2;">=</button>
       <button class="num" data-value="7">7</button>
       <button class="num" data-value="8">8</button>
       <button class="num" data-value="9">9</button>
-      <button class="operator" data-value="*">×</button>
+      <button class="operator" data-value="/">&divide;</button>
       <button class="num" data-value="4">4</button>
       <button class="num" data-value="5">5</button>
       <button class="num" data-value="6">6</button>
-      <button class="operator" data-value="-">-</button>
+      <button class="operator" data-value="*">×</button>
       <button class="num" data-value="1">1</button>
       <button class="num" data-value="2">2</button>
       <button class="num" data-value="3">3</button>
-      <button class="operator" data-value="+">+</button>
+      <button class="operator" data-value="-">-</button>
       <button id="sign">+/-</button>
       <button class="num" data-value="0">0</button>
       <button id="float">.</button>
-      <button id="equal" data-value="=">=</button>
+      <button class="operator" data-value="+">+</button>
     </div>
   </div>
   <script src="script.js"></script>
