@@ -1,8 +1,6 @@
 # calculator
 ### Description
 A simple calculator app.
-### Why I made this?
-I made this following theodinproject.com.
 ### Features
 - basic operators (addition, multiplication etc.)
 - button to change the sign of the number
